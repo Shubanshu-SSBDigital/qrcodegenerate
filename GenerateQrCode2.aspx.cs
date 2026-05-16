@@ -59,32 +59,7 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
             ExportToCsv(qrList);
     }
 
-    // ===================== CSV EXPORT =====================
-    //private void ExportToCsv(List<QRData> qrList)
-    //{
-    //    StringBuilder csv = new StringBuilder();
-    //    csv.AppendLine("srno,qrvalue,qrtext,qruse,createddate,updatedate");
-
-    //    foreach (var item in qrList)
-    //    {
-    //        csv.AppendLine(string.Format("{0},{1},{2},{3},{4},{5}",
-    //            item.srno,
-    //            item.qrvalue,
-    //            item.qrtext,
-    //            item.qruse,
-    //            item.createddate.ToString("yyyy-MM-dd HH:mm:ss"),
-    //            item.updatedate.ToString("yyyy-MM-dd HH:mm:ss")
-    //        ));
-    //    }
-
-    //    string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv";
-
-    //    Response.Clear();
-    //    Response.ContentType = "text/csv";
-    //    Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-    //    Response.Write(csv.ToString());
-    //    Response.End();
-    //}
+  
     private void ExportToCsv(List<QRData> qrList)
     {
         StringBuilder csv = new StringBuilder();
@@ -110,51 +85,9 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
         Response.Write(csv.ToString());
         Response.End();
     }
-    // ===================== EXCEL EXPORT =====================
-    //private void ExportToExcel(List<QRData> qrList)
-    //{
-    //    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-    //    using (ExcelPackage excel = new ExcelPackage())
-    //    {
-    //        var ws = excel.Workbook.Worksheets.Add("QRCodeMaster");
-
-    //        // Header
-    //        ws.Cells[1, 1].Value = "srno";
-    //        ws.Cells[1, 2].Value = "qrvalue";
-    //        ws.Cells[1, 3].Value = "qrtext";
-    //        ws.Cells[1, 4].Value = "qruse";
-    //        ws.Cells[1, 5].Value = "createddate";
-    //        ws.Cells[1, 6].Value = "updatedate";
-
-    //        ws.Row(1).Style.Font.Bold = true;
-
-    //        int row = 2;
-
-    //        foreach (var item in qrList)
-    //        {
-    //            ws.Cells[row, 1].Value = item.srno;
-    //            ws.Cells[row, 2].Value = item.qrvalue;
-    //            ws.Cells[row, 3].Value = item.qrtext;
-    //            ws.Cells[row, 4].Value = item.qruse;
-    //            ws.Cells[row, 5].Value = item.createddate.ToString("yyyy-MM-dd HH:mm:ss");
-    //            ws.Cells[row, 6].Value = item.updatedate.ToString("yyyy-MM-dd HH:mm:ss");
-    //            row++;
-    //        }
-
-    //        ws.Cells.AutoFitColumns();
-
-    //        string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
-
-    //        Response.Clear();
-    //        Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    //        Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-
-    //        Response.BinaryWrite(excel.GetAsByteArray());
-    //        Response.End();
-    //    }
-    //}
-
+   
+   
+   
     private void ExportToExcel(List<QRData> qrList)
     {
         OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -209,6 +142,8 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
             Response.End();
         }
     }
+  
+  
   
     private void LoadExistingQRCodes(HashSet<string> usedQRText, HashSet<string> usedQRValue)
     {
