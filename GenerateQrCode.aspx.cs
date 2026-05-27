@@ -55,7 +55,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
     }
 
 
-    // ===================== CSV EXPORT =====================
     private void ExportToCsv(List<QRData> qrList)
     {
         StringBuilder csv = new StringBuilder();
@@ -75,8 +74,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
         Response.End();
     }
 
-
-    // ===================== EXCEL EXPORT =====================
     private void ExportToExcel(List<QRData> qrList)
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -85,7 +82,8 @@ public partial class GenerateQrCode : System.Web.UI.Page
         {
             var ws = excel.Workbook.Worksheets.Add("QRCodeMaster");
 
-            // Header
+           
+
             ws.Cells[1, 1].Value = "SerialNo";
             ws.Cells[1, 2].Value = "QRText";
             ws.Cells[1, 3].Value = "QRValue";
@@ -115,8 +113,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
         }
     }
 
-
-    // ===================== EXISTING METHODS (UNCHANGED) =====================
 
     private void LoadExistingQRCodes(HashSet<string> usedQRText, HashSet<string> usedQRValue)
     {
