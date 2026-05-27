@@ -96,7 +96,7 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
         {
             var ws = excel.Workbook.Worksheets.Add("QRCodeMaster");
 
-            // ✅ Header
+           
             ws.Cells[1, 1].Value = "srno";
             ws.Cells[1, 2].Value = "qrvalue";
             ws.Cells[1, 3].Value = "qrtext";
@@ -106,7 +106,7 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
 
             ws.Row(1).Style.Font.Bold = true;
 
-            // ✅ IMPORTANT: Set columns as TEXT format
+           
             ws.Column(1).Style.Numberformat.Format = "@"; // srno
             ws.Column(2).Style.Numberformat.Format = "@"; // qrvalue
             ws.Column(3).Style.Numberformat.Format = "@"; // qrtext
@@ -133,7 +133,7 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
 
             string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
 
-            // ✅ Download Excel
+            
             Response.Clear();
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
@@ -173,8 +173,6 @@ public partial class GenerateQrCode2 : System.Web.UI.Page
     }
 
 
- 
-    // ===================== UNIQUE =====================
     private string GenerateUniqueQRText(HashSet<string> usedSet, Random rand)
     {
         string qrText;
