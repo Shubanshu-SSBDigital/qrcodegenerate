@@ -22,7 +22,11 @@ public partial class GenerateQrCode : System.Web.UI.Page
 
     private void GenerateData(bool outputExcel)
     {
-        int totalRecords = 30000;
+        //int totalRecords = 30000;
+        //int startSerial = 1;
+
+
+        int totalRecords = 500;
         int startSerial = 1;
 
         HashSet<string> usedQRText = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -42,7 +46,9 @@ public partial class GenerateQrCode : System.Web.UI.Page
 
             qrList.Add(new QRData
             {
-                SerialNo = serialNo.ToString("D5"),
+                //SerialNo = serialNo.ToString("D5"),
+                SerialNo = serialNo.ToString("D3"),
+
                 QRText = qrText,
                 QRValue = qrValue
             });
