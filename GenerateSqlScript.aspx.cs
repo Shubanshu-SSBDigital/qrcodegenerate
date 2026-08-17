@@ -26,7 +26,7 @@ public partial class GenerateSqlScript : System.Web.UI.Page
             using (SqlConnection con = new SqlConnection(connStr))
             {
                 string query = "SELECT [qrvalue], [qrtext], [qruse] " +
-                               "FROM [handloom_Odisha].[dbo].[qrcodemaster_1] ORDER BY srno";
+                               "FROM [Qrcodegeneratedb].[dbo].[qrcodemaster_1] ORDER BY srno";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -37,7 +37,9 @@ public partial class GenerateSqlScript : System.Web.UI.Page
 
                         while (dr.Read())
                         {
-                            string srno = serialNo.ToString("D5"); // 00001, 00002, ...
+                          //  string srno = serialNo.ToString("D5"); // 00001, 00002, ...
+
+                            string srno = serialNo.ToString("D3");
 
                             string qrvalue = dr["qrvalue"] != DBNull.Value ? "'" + dr["qrvalue"].ToString().Replace("'", "''") + "'" : "NULL";
                             string qrtext = dr["qrtext"] != DBNull.Value ? "'" + dr["qrtext"].ToString().Replace("'", "''") + "'" : "NULL";
