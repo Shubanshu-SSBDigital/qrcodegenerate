@@ -148,7 +148,7 @@ public partial class UploadCsv : System.Web.UI.Page
                 string qrText = row["QRText"].ToString();
                 string qrValue = row["QRValue"].ToString();
 
-                string query = "SELECT COUNT(*) FROM QRCodeMaster WHERE QRText = @QRText OR QRValue = @QRValue";
+                string query = "SELECT COUNT(*) FROM qrcodemaster_1 WHERE QRText = @QRText OR QRValue = @QRValue";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@QRText", qrText);
@@ -179,7 +179,7 @@ public partial class UploadCsv : System.Web.UI.Page
                 {
                     foreach (DataRow row in dt.Rows)
                     {
-                        string query = "INSERT INTO QRCodeMaster (SerialNo, QRText, QRValue) VALUES (@SerialNo, @QRText, @QRValue)";
+                        string query = "INSERT INTO qrcodemaster_1 (SerialNo, QRText, QRValue) VALUES (@SerialNo, @QRText, @QRValue)";
                         using (SqlCommand cmd = new SqlCommand(query, con, tran))
                         {
                             cmd.Parameters.AddWithValue("@SerialNo", row["SerialNo"]);
