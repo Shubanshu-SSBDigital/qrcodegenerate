@@ -18,6 +18,7 @@ public partial class ExcelPasswordHashGenrate : Page
     {
         try
         {
+
             lblMessage.Text = "";
             lblMessage.CssClass = "message";
 
@@ -62,10 +63,12 @@ public partial class ExcelPasswordHashGenrate : Page
                         return;
                     }
 
+
                     ExcelWorksheet worksheet =
                         package.Workbook.Worksheets[0];
 
                   
+
                     if (worksheet.Dimension == null)
                     {
                         lblMessage.Text =
@@ -74,6 +77,7 @@ public partial class ExcelPasswordHashGenrate : Page
                         lblMessage.CssClass = "message error";
                         return;
                     }
+
 
                     int startRow =
                         worksheet.Dimension.Start.Row;
@@ -88,7 +92,6 @@ public partial class ExcelPasswordHashGenrate : Page
                         worksheet.Dimension.End.Column;
 
                    
-
                     int passwordColumn = -1;
 
                     for (int col = startColumn;
@@ -111,7 +114,6 @@ public partial class ExcelPasswordHashGenrate : Page
                         }
                     }
 
-                   
                     if (passwordColumn == -1)
                     {
                         lblMessage.Text =
@@ -122,8 +124,6 @@ public partial class ExcelPasswordHashGenrate : Page
 
                         return;
                     }
-
-                  
 
                     int passwordHashColumn = -1;
 
@@ -147,7 +147,38 @@ public partial class ExcelPasswordHashGenrate : Page
                         }
                     }
 
-                   
+
+
+                    //if (passwordHashColumn == -1)
+                    //{
+                    //    passwordHashColumn = endColumn + 1;
+
+                    //    worksheet.Cells[
+                    //        startRow,
+                    //        passwordHashColumn
+                    //    ].Value = "PasswordHash";
+                    //}
+
+                    //int hashedCount = 0;
+
+
+                    //for (int row = startRow + 1;
+                    //     row <= endRow;
+                    //     row++)
+                    //{
+
+                    //    string password =
+                    //        worksheet.Cells[
+                    //            row,
+                    //            passwordColumn
+                    //        ].Text.Trim();
+
+
+                    //    if (string.IsNullOrWhiteSpace(password))
+                    //    {
+                    //        continue;
+                    //    }
+
 
                     if (passwordHashColumn == -1)
                     {
@@ -161,25 +192,25 @@ public partial class ExcelPasswordHashGenrate : Page
 
                     int hashedCount = 0;
 
-                    
+
                     for (int row = startRow + 1;
                          row <= endRow;
                          row++)
                     {
-                       
+
                         string password =
                             worksheet.Cells[
                                 row,
                                 passwordColumn
                             ].Text.Trim();
 
-                       
+
                         if (string.IsNullOrWhiteSpace(password))
                         {
                             continue;
                         }
 
-                       
+
                         string hashedPassword =
                             ComputeSha256Hash(password);
 
@@ -210,7 +241,20 @@ public partial class ExcelPasswordHashGenrate : Page
                     byte[] outputBytes =
                         package.GetAsByteArray();
 
-                
+
+                    //Response.Clear();
+                    //Response.ClearHeaders();
+                    //Response.ClearContent();
+
+                    //Response.ContentType =
+                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                    //Response.AddHeader(
+                    //    "Content-Disposition",
+                    //    "attachment; filename=\"" +
+                    //    outputFileName +
+                    //    "\"");
+
                     Response.Clear();
                     Response.ClearHeaders();
                     Response.ClearContent();
