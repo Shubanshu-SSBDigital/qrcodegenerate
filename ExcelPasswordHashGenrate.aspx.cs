@@ -67,8 +67,6 @@ public partial class ExcelPasswordHashGenrate : Page
                     ExcelWorksheet worksheet =
                         package.Workbook.Worksheets[0];
 
-                  
-
                     if (worksheet.Dimension == null)
                     {
                         lblMessage.Text =
@@ -148,38 +146,6 @@ public partial class ExcelPasswordHashGenrate : Page
                     }
 
 
-
-                    //if (passwordHashColumn == -1)
-                    //{
-                    //    passwordHashColumn = endColumn + 1;
-
-                    //    worksheet.Cells[
-                    //        startRow,
-                    //        passwordHashColumn
-                    //    ].Value = "PasswordHash";
-                    //}
-
-                    //int hashedCount = 0;
-
-
-                    //for (int row = startRow + 1;
-                    //     row <= endRow;
-                    //     row++)
-                    //{
-
-                    //    string password =
-                    //        worksheet.Cells[
-                    //            row,
-                    //            passwordColumn
-                    //        ].Text.Trim();
-
-
-                    //    if (string.IsNullOrWhiteSpace(password))
-                    //    {
-                    //        continue;
-                    //    }
-
-
                     if (passwordHashColumn == -1)
                     {
                         passwordHashColumn = endColumn + 1;
@@ -242,19 +208,7 @@ public partial class ExcelPasswordHashGenrate : Page
                         package.GetAsByteArray();
 
 
-                    //Response.Clear();
-                    //Response.ClearHeaders();
-                    //Response.ClearContent();
-
-                    //Response.ContentType =
-                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-
-                    //Response.AddHeader(
-                    //    "Content-Disposition",
-                    //    "attachment; filename=\"" +
-                    //    outputFileName +
-                    //    "\"");
-
+                  
                     Response.Clear();
                     Response.ClearHeaders();
                     Response.ClearContent();
