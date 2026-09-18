@@ -159,6 +159,31 @@ public partial class GenerateQrCode : System.Web.UI.Page
         return qrText;
     }
 
+    //private string GenerateUniqueQRValue(HashSet<string> usedSet)
+    //{
+    //    string qrValue;
+
+    //    do { qrValue = GenerateRandomHex(16); }
+    //    while (usedSet.Contains(qrValue));
+
+    //    usedSet.Add(qrValue);
+    //    return qrValue;
+    //}
+
+    //private string GenerateRandomNumber(int length, Random rand)
+    //{
+    //    StringBuilder sb = new StringBuilder(length);
+
+    //    for (int i = 0; i < length; i++)
+    //        sb.Append(rand.Next(0, 10));
+
+    //    return sb.ToString();
+    //}
+
+
+
+
+
     private string GenerateUniqueQRValue(HashSet<string> usedSet)
     {
         string qrValue;
@@ -180,6 +205,11 @@ public partial class GenerateQrCode : System.Web.UI.Page
         return sb.ToString();
     }
 
+
+
+
+
+
     private string GenerateRandomHex(int length)
     {
         byte[] buffer = new byte[length / 2];
@@ -197,6 +227,8 @@ public partial class GenerateQrCode : System.Web.UI.Page
         return sb.ToString();
     }
 }
+
+
 
 public class QRData
 {
