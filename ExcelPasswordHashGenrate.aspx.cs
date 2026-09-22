@@ -68,31 +68,6 @@ public partial class ExcelPasswordHashGenrate : Page
                     ExcelWorksheet worksheet =
                         package.Workbook.Worksheets[0];
 
-                    //if (worksheet.Dimension == null)
-                    //{
-                    //    lblMessage.Text =
-                    //        "Excel worksheet is empty.";
-
-                    //    lblMessage.CssClass = "message error";
-                    //    return;
-                    //}
-
-
-                    //int startRow =
-                    //    worksheet.Dimension.Start.Row;
-
-                    //int endRow =
-                    //    worksheet.Dimension.End.Row;
-
-                    //int startColumn =
-                    //    worksheet.Dimension.Start.Column;
-
-                    //int endColumn =
-                    //    worksheet.Dimension.End.Column;
-
-
-
-
 
                     if (worksheet.Dimension == null)
                     {
@@ -102,6 +77,7 @@ public partial class ExcelPasswordHashGenrate : Page
                         lblMessage.CssClass = "message error";
                         return;
                     }
+
 
 
                     int startRow =
@@ -115,7 +91,6 @@ public partial class ExcelPasswordHashGenrate : Page
 
                     int endColumn =
                         worksheet.Dimension.End.Column;
-
 
 
 
@@ -173,6 +148,7 @@ public partial class ExcelPasswordHashGenrate : Page
                             break;
                         }
                     }
+
 
 
                     if (passwordHashColumn == -1)
@@ -277,7 +253,6 @@ public partial class ExcelPasswordHashGenrate : Page
                 "message error";
         }
     }
-
 
     public string ComputeSha256Hash(string rawData)
     {
