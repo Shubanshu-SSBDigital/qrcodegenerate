@@ -86,6 +86,7 @@ public partial class ExcelPasswordHashGenrate : Page
                     int endRow =
                         worksheet.Dimension.End.Row;
 
+
                     int startColumn =
                         worksheet.Dimension.Start.Column;
 
@@ -149,8 +150,6 @@ public partial class ExcelPasswordHashGenrate : Page
                         }
                     }
 
-
-
                     if (passwordHashColumn == -1)
                     {
                         passwordHashColumn = endColumn + 1;
@@ -168,8 +167,6 @@ public partial class ExcelPasswordHashGenrate : Page
                          row <= endRow;
                          row++)
                     {
-
-
 
                         string password =
                             worksheet.Cells[
@@ -211,12 +208,36 @@ public partial class ExcelPasswordHashGenrate : Page
                             fuExcel.FileName)
                         + "_PasswordHash.xlsx";
 
-                    
+
+                    //byte[] outputBytes =
+                    //    package.GetAsByteArray();
+
+
+
+                    //Response.Clear();
+                    //Response.ClearHeaders();
+                    //Response.ClearContent();
+
+                    //Response.ContentType =
+                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                    //Response.AddHeader(
+                    //    "Content-Disposition",
+                    //    "attachment; filename=\"" +
+                    //    outputFileName +
+                    //    "\"");
+
+                    //Response.AddHeader(
+                    //    "Content-Length",
+                    //    outputBytes.Length.ToString());
+
+
+
                     byte[] outputBytes =
-                        package.GetAsByteArray();
+                   package.GetAsByteArray();
 
 
-                  
+
                     Response.Clear();
                     Response.ClearHeaders();
                     Response.ClearContent();
@@ -233,6 +254,8 @@ public partial class ExcelPasswordHashGenrate : Page
                     Response.AddHeader(
                         "Content-Length",
                         outputBytes.Length.ToString());
+
+
 
                     Response.BinaryWrite(outputBytes);
 
