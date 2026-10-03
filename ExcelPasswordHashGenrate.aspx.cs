@@ -64,7 +64,6 @@ public partial class ExcelPasswordHashGenrate : Page
                         return;
                     }
 
-
                     ExcelWorksheet worksheet =
                         package.Workbook.Worksheets[0];
 
@@ -77,8 +76,6 @@ public partial class ExcelPasswordHashGenrate : Page
                         lblMessage.CssClass = "message error";
                         return;
                     }
-
-
 
                     int startRow =
                         worksheet.Dimension.Start.Row;
@@ -209,34 +206,8 @@ public partial class ExcelPasswordHashGenrate : Page
                         + "_PasswordHash.xlsx";
 
 
-                    //byte[] outputBytes =
-                    //    package.GetAsByteArray();
-
-
-
-                    //Response.Clear();
-                    //Response.ClearHeaders();
-                    //Response.ClearContent();
-
-                    //Response.ContentType =
-                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-
-                    //Response.AddHeader(
-                    //    "Content-Disposition",
-                    //    "attachment; filename=\"" +
-                    //    outputFileName +
-                    //    "\"");
-
-                    //Response.AddHeader(
-                    //    "Content-Length",
-                    //    outputBytes.Length.ToString());
-
-
-
                     byte[] outputBytes =
                    package.GetAsByteArray();
-
-
 
                     Response.Clear();
                     Response.ClearHeaders();
