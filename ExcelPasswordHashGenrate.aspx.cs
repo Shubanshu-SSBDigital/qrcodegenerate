@@ -35,6 +35,8 @@ public partial class ExcelPasswordHashGenrate : Page
             string extension =
                 Path.GetExtension(fuExcel.FileName).ToLower();
 
+
+
             if (extension != ".xlsx")
             {
                 lblMessage.Text =
@@ -43,6 +45,8 @@ public partial class ExcelPasswordHashGenrate : Page
                 lblMessage.CssClass = "message error";
                 return;
             }
+
+
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -54,6 +58,7 @@ public partial class ExcelPasswordHashGenrate : Page
                 using (ExcelPackage package =
                        new ExcelPackage(stream))
                 {
+
                     
                     if (package.Workbook.Worksheets.Count == 0)
                     {
@@ -73,12 +78,27 @@ public partial class ExcelPasswordHashGenrate : Page
                         lblMessage.Text =
                             "Excel worksheet is empty.";
 
+
                         lblMessage.CssClass = "message error";
                         return;
                     }
 
+                    //int startRow =
+                    //    worksheet.Dimension.Start.Row;
+
+                    //int endRow =
+                    //    worksheet.Dimension.End.Row;
+
+
+                    //int startColumn =
+                    //    worksheet.Dimension.Start.Column;
+
+                    //int endColumn =
+                    //    worksheet.Dimension.End.Column;
+
+
                     int startRow =
-                        worksheet.Dimension.Start.Row;
+                      worksheet.Dimension.Start.Row;
 
                     int endRow =
                         worksheet.Dimension.End.Row;
@@ -141,6 +161,7 @@ public partial class ExcelPasswordHashGenrate : Page
                             header,
                             "PasswordHash",
                             StringComparison.OrdinalIgnoreCase))
+
                         {
                             passwordHashColumn = col;
                             break;
@@ -170,6 +191,7 @@ public partial class ExcelPasswordHashGenrate : Page
                                 row,
                                 passwordColumn
                             ].Text.Trim();
+
 
 
                         if (string.IsNullOrWhiteSpace(password))
@@ -225,7 +247,6 @@ public partial class ExcelPasswordHashGenrate : Page
                     Response.AddHeader(
                         "Content-Length",
                         outputBytes.Length.ToString());
-
 
 
                     Response.BinaryWrite(outputBytes);
