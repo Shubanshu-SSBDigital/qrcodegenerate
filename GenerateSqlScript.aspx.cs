@@ -6,7 +6,7 @@ using System.Web;
 
 public partial class GenerateSqlScript : System.Web.UI.Page
 {
-         
+          
     protected void btnGenerateScript_Click(object sender, EventArgs e)
     {
         try
@@ -14,7 +14,7 @@ public partial class GenerateSqlScript : System.Web.UI.Page
             string connStr = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
             StringBuilder script = new StringBuilder();
-
+                  
             // Add header comments
             script.AppendLine("-- =============================================");
             script.AppendLine("-- SQL Insert Script for qrcodemaster");
@@ -39,7 +39,7 @@ public partial class GenerateSqlScript : System.Web.UI.Page
                         {
                           //  string srno = serialNo.ToString("D5"); // 00001, 00002, ...
 
-                            string srno = serialNo.ToString("D3");
+                            string srno = serialNo.ToString("D6");
 
                             string qrvalue = dr["qrvalue"] != DBNull.Value ? "'" + dr["qrvalue"].ToString().Replace("'", "''") + "'" : "NULL";
                             string qrtext = dr["qrtext"] != DBNull.Value ? "'" + dr["qrtext"].ToString().Replace("'", "''") + "'" : "NULL";
