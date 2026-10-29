@@ -26,7 +26,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
         //int startSerial = 1;
 
 
-        int totalRecords = 500;
+        int totalRecords = 500000;
         int startSerial = 1;
 
         HashSet<string> usedQRText = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -47,7 +47,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
             qrList.Add(new QRData
             {
                 //SerialNo = serialNo.ToString("D5"),
-                SerialNo = serialNo.ToString("D3"),
+                SerialNo = serialNo.ToString("D6"),
 
                 QRText = qrText,
                 QRValue = qrValue
@@ -61,6 +61,26 @@ public partial class GenerateQrCode : System.Web.UI.Page
     }
 
 
+    //private void ExportToCsv(List<QRData> qrList)
+    //{
+    //    StringBuilder csv = new StringBuilder();
+    //    csv.AppendLine("SerialNo,QRText,QRValue");
+
+    //    foreach (var item in qrList)
+    //    {
+    //        csv.AppendLine("'" + item.SerialNo + "," + item.QRText + "," + item.QRValue);
+    //    }
+
+    //    string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv";
+
+    //    Response.Clear();
+    //    Response.ContentType = "text/csv";
+    //    Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+    //    Response.Write(csv.ToString());
+    //    Response.End();
+    //}
+
+
     private void ExportToCsv(List<QRData> qrList)
     {
         StringBuilder csv = new StringBuilder();
@@ -68,17 +88,26 @@ public partial class GenerateQrCode : System.Web.UI.Page
 
         foreach (var item in qrList)
         {
-            csv.AppendLine("'" + item.SerialNo + "," + item.QRText + "," + item.QRValue);
+            //  csv.AppendLine(item.SerialNo + "," + item.QRText + "," + item.QRValue);
+
+            // csv.AppendLine(item.SerialNo + "," + item.QRText + "," + item.QRValue);
+
+            csv.AppendLine("=\"" + item.SerialNo + "\"," +
+               item.QRText + "," + item.QRValue);
         }
 
-        string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv";
+        string fileName = "QRCodeMaster_" +
+            DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv";
 
         Response.Clear();
         Response.ContentType = "text/csv";
-        Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+        Response.AddHeader("Content-Disposition",
+            "attachment;filename=" + fileName);
+
         Response.Write(csv.ToString());
         Response.End();
     }
+
 
     private void ExportToExcel(List<QRData> qrList)
     {
