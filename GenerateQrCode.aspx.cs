@@ -26,11 +26,12 @@ public partial class GenerateQrCode : System.Web.UI.Page
         //int startSerial = 1;
 
 
-        int totalRecords = 500000;
+        int totalRecords = 1000000;
         int startSerial = 1;
 
         HashSet<string> usedQRText = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         HashSet<string> usedQRValue = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
 
         LoadExistingQRCodes(usedQRText, usedQRValue);
 
@@ -47,7 +48,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
             qrList.Add(new QRData
             {
                 //SerialNo = serialNo.ToString("D5"),
-                SerialNo = serialNo.ToString("D6"),
+                SerialNo = serialNo.ToString("D7"),
 
                 QRText = qrText,
                 QRValue = qrValue
@@ -108,7 +109,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
         Response.End();
     }
 
-
     private void ExportToExcel(List<QRData> qrList)
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -147,7 +147,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
             Response.End();
         }
     }
-
 
     private void LoadExistingQRCodes(HashSet<string> usedQRText, HashSet<string> usedQRValue)
     {
@@ -233,11 +232,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
 
         return sb.ToString();
     }
-
-
-
-
-
 
     private string GenerateRandomHex(int length)
     {
