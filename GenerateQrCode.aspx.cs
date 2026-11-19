@@ -117,7 +117,22 @@ public partial class GenerateQrCode : System.Web.UI.Page
         {
             var ws = excel.Workbook.Worksheets.Add("QRCodeMaster");
 
-           
+            //ws.Cells[1, 1].Value = "SerialNo";
+            //ws.Cells[1, 2].Value = "QRText";
+            //ws.Cells[1, 3].Value = "QRValue";
+
+            //ws.Row(1).Style.Font.Bold = true;
+
+            //int row = 2;
+
+            //foreach (var item in qrList)
+            //{
+            //    ws.Cells[row, 1].Value = item.SerialNo;
+            //    ws.Cells[row, 2].Value = item.QRText;
+            //    ws.Cells[row, 3].Value = item.QRValue;
+            //    row++;
+            //}
+
 
             ws.Cells[1, 1].Value = "SerialNo";
             ws.Cells[1, 2].Value = "QRText";
@@ -135,11 +150,14 @@ public partial class GenerateQrCode : System.Web.UI.Page
                 row++;
             }
 
+
             ws.Cells.AutoFitColumns();
 
             string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
 
             Response.Clear();
+
+
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
 
@@ -159,6 +177,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
                 con.Open();
+
 
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
@@ -209,9 +228,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
     //}
 
 
-
-
-
     private string GenerateUniqueQRValue(HashSet<string> usedSet)
     {
         string qrValue;
@@ -232,6 +248,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
 
         return sb.ToString();
     }
+
 
     private string GenerateRandomHex(int length)
     {
