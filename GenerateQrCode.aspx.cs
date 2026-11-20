@@ -62,25 +62,7 @@ public partial class GenerateQrCode : System.Web.UI.Page
     }
 
 
-    //private void ExportToCsv(List<QRData> qrList)
-    //{
-    //    StringBuilder csv = new StringBuilder();
-    //    csv.AppendLine("SerialNo,QRText,QRValue");
-
-    //    foreach (var item in qrList)
-    //    {
-    //        csv.AppendLine("'" + item.SerialNo + "," + item.QRText + "," + item.QRValue);
-    //    }
-
-    //    string fileName = "QRCodeMaster_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv";
-
-    //    Response.Clear();
-    //    Response.ContentType = "text/csv";
-    //    Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-    //    Response.Write(csv.ToString());
-    //    Response.End();
-    //}
-
+  
 
     private void ExportToCsv(List<QRData> qrList)
     {
@@ -178,7 +160,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
             {
                 con.Open();
 
-
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
@@ -193,8 +174,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
             }
         }
     }
-
-
     private string GenerateUniqueQRText(HashSet<string> usedSet, Random rand)
     {
         string qrText;
@@ -205,28 +184,6 @@ public partial class GenerateQrCode : System.Web.UI.Page
         usedSet.Add(qrText);
         return qrText;
     }
-
-    //private string GenerateUniqueQRValue(HashSet<string> usedSet)
-    //{
-    //    string qrValue;
-
-    //    do { qrValue = GenerateRandomHex(16); }
-    //    while (usedSet.Contains(qrValue));
-
-    //    usedSet.Add(qrValue);
-    //    return qrValue;
-    //}
-
-    //private string GenerateRandomNumber(int length, Random rand)
-    //{
-    //    StringBuilder sb = new StringBuilder(length);
-
-    //    for (int i = 0; i < length; i++)
-    //        sb.Append(rand.Next(0, 10));
-
-    //    return sb.ToString();
-    //}
-
 
     private string GenerateUniqueQRValue(HashSet<string> usedSet)
     {
